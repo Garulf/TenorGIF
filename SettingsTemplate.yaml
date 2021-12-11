@@ -4,6 +4,7 @@ body:
       name: description
       description: >
         Please provide your Tenor.com API key from: https://tenor.com/developer/keyregistration
+        - Powered By Tenor
   - type: input
     attributes:
       name: api_key
