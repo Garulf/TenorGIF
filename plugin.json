@@ -1,12 +1,12 @@
 {
-    "ID": "A4A92BC0C742463187E5CCBA9B849B86",
-    "ActionKeyword": "tf",
-    "Name": "Tenor Flow",
-    "Description": "Search Tenor for amazing GIFs!",
-    "Author": "Garulf",
-    "Version": "1.0.0",
-    "Language": "python",
-    "Website": "https://github.com/Garulf/tenor_flow",
-    "IcoPath": "./icon.png",
-    "ExecuteFileName": "run.py"
+  "ID": "A4A92BC0C742463187E5CCBA9B849B86",
+  "ActionKeyword": "tf",
+  "Name": "Tenor Flow",
+  "Description": "Search Tenor for amazing GIFs!",
+  "Author": "Garulf",
+  "Version": "1.0.0",
+  "Language": "python",
+  "Website": "https://github.com/Garulf/tenor_flow",
+  "IcoPath": "./icon.png",
+  "ExecuteFileName": "run.py"
 }
