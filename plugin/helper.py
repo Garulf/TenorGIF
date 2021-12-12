@@ -3,6 +3,7 @@ import os
 import json
 from pathlib import Path
 from tempfile import gettempdir
+from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
@@ -37,7 +38,7 @@ class Tenor(TenorBase):
             gifs.append(
                 GIF(result)
             )
-        return gifs
+        return Results(gifs)
 
     def trending_gifs(self, limit: int = 10) -> dict:
         params = {
@@ -62,7 +63,20 @@ class Tenor(TenorBase):
                 result
             )
         return terms
-    
+
+class Results():
+
+    def __init__(self, results: list):
+        self._results = results
+
+    def __iter__(self):
+        return iter(self._results)
+
+    def download_all(self, gif_format: str = "tinygif",
+                     max_workers: int = 20):
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            for gif in self._results:
+                executor.submit(gif.download, gif_format)
 
 class GIF(TenorBase):
 

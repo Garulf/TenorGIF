@@ -11,10 +11,10 @@ class TenorFlow(Flox):
 
 
     def query(self, query):
-        _settings = json.loads(sys.argv[1])["settings"]
-        api_key = _settings["api_key"]
-        max_results = _settings["max_results"]
-        default_action = _settings["default_action"]
+
+        api_key = self.settings["api_key"]
+        max_results = self.settings["max_results"]
+        default_action = self.settings["default_action"]
         if api_key == "":
             self.add_item(
                 title="Please set your API key in the settings.",
@@ -32,11 +32,12 @@ class TenorFlow(Flox):
                     icon="icon.png",
                     method=self.search_term,
                     parameters=[term],
-                    hide=True
+                    dont_hide=True
                 )
             return
         else:
             results = t.search(query, max_results)
+            results.download_all()
         for result in results:
             self.add_item(
                 title=result.content_description,
