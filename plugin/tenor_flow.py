@@ -37,6 +37,7 @@ class TenorFlow(Flox):
             return
         else:
             results = t.search(query, max_results)
+            results.download_all()
         for result in results:
             self.add_item(
                 title=result.content_description,
