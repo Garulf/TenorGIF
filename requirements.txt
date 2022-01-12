@@ -1,2 +1,2 @@
-git+git://github.com/garulf/flox@v0.7.1#egg=flox
+git+https://github.com/garulf/flox@v0.7.1#egg=flox
 requests==2.25.1
