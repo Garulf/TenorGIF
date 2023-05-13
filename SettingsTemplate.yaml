@@ -3,7 +3,7 @@ body:
     attributes:
       name: description
       description: >
-        Please provide your Tenor.com API key from: https://tenor.com/developer/keyregistration
+        Please provide your Tenor.com API key from: https://developers.google.com/tenor/guides/quickstart
         - Powered By Tenor
   - type: input
     attributes:
