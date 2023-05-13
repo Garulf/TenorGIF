@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import requests
 
-BASE_URL = "https://api.tenor.com/v1"
+BASE_URL = "https://tenor.googleapis.com/v2"
 plugindir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(plugindir)
 sys.path.append(os.path.join(plugindir, "lib"))
@@ -83,8 +83,8 @@ class GIF(TenorBase):
     def __init__(self, data: dict):
         self._data = data
         self.__dict__.update(data)
-        for item in data['media'][0]:
-            self.__setattr__(item, data['media'][0][item])
+        for format, data in data['media_formats'].items():
+            self.__setattr__(format, data)
 
     def _download(self, url: str, path: str) -> None:
         

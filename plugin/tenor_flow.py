@@ -61,7 +61,7 @@ class TenorFlow(Flox):
             subtitle="Copy GIF URL to clipboard.",
             icon="icon.png",
             method=self.copy_to_clipboard,
-            parameters=[data[0]["media"][0]["gif"]["url"]]
+            parameters=[data[0]["media_formats"]["gif"]["url"]]
         )
 
     def activate(self, default_action, url):
