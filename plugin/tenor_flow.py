@@ -46,7 +46,8 @@ class TenorFlow(Flox):
                 icon=str(result.download('tinygif')),
                 method=self.activate,
                 parameters=[default_action, result.gif["url"]],
-                context=[result._data]
+                context=[result._data],
+                CopyText=result.gif["url"]
             )
 
     def context_menu(self, data):
