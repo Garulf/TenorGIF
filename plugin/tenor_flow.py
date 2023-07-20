@@ -3,6 +3,7 @@ import webbrowser
 import json
 
 from flox import Flox
+from flox.clipboard import Clipboard
 
 from helper import Tenor
 
@@ -68,7 +69,7 @@ class TenorFlow(Flox):
         if default_action.lower() == "open website":
             webbrowser.open(url)
         elif default_action.lower() == "copy to clipboard":
-            print(json.dumps({"method": "Flow.Launcher.CopyToClipboard","parameters":[url]}))
+            self.copy_to_clipboard(url)
 
     def search_term(self, term):
         self.change_query(F"{self.user_keyword} {term} ", True)
@@ -77,7 +78,8 @@ class TenorFlow(Flox):
         webbrowser.open(url)
 
     def copy_to_clipboard(self, url):
-        print(json.dumps({"method": "Flow.Launcher.CopyToClipboard","parameters":[url]}))
+        cb = Clipboard()
+        cb.put(url)
 
 if __name__ == "__main__":
     TenorFlow()
