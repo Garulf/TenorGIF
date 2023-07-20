@@ -9,4 +9,4 @@ sys.path.append(os.path.join(plugindir, "plugin"))
 from plugin.tenor_flow import TenorFlow
 
 if __name__ == "__main__":
-    TenorFlow()
+    TenorFlow().run()
