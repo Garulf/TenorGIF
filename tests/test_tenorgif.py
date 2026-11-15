@@ -1,6 +1,7 @@
 import asyncio
 
 import tenorgif
+from conftest import FakeResponse
 from launcher import KEEP_OPEN
 
 
@@ -76,3 +77,11 @@ def test_missing_optional_settings_use_template_defaults(settings, http):
     first = run_query("dog")[0]
     assert http.calls[0][1]["limit"] == 10
     assert first["SubTitle"] == "Select to copy to clipboard."
+
+
+def test_rejected_request_is_shown_as_a_result(settings, http):
+    http.error = FakeResponse({"error": {"code": 403, "message": "Permission denied on the service."}}, status=403)
+    (result,) = run_query("dog")
+    assert result["Title"] == "Tenor request failed"
+    assert result["SubTitle"] == "403: Permission denied on the service."
+    assert result["JsonRPCAction"]["Method"] == "Flow.Launcher.OpenSettingDialog"

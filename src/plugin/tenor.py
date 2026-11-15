@@ -11,6 +11,29 @@ BASE_URL = "https://tenor.googleapis.com/v2"
 DOWNLOAD_WORKERS = 20
 
 
+class TenorError(Exception):
+    pass
+
+
+def describe(error: requests.RequestException) -> str:
+    response = getattr(error, "response", None)
+    if response is None:
+        return str(error)
+    try:
+        message = response.json()["error"]["message"]
+    except (ValueError, KeyError, TypeError):
+        return str(error)
+    return f"{response.status_code}: {message}"
+
+
+def checked(response: Any) -> Any:
+    try:
+        response.raise_for_status()
+    except requests.RequestException as error:
+        raise TenorError(describe(error)) from error
+    return response
+
+
 class GIF:
 
     def __init__(self, data: Dict[str, Any]) -> None:
@@ -44,9 +67,13 @@ class Tenor:
 
     def _request(self, endpoint: str, params: Dict[str, Any]) -> Dict[str, Any]:
         params["key"] = self.api_key
-        response = self.http.get(f"{BASE_URL}/{endpoint}", params=params)
-        response.raise_for_status()
-        return response.json()
+        return checked(self._get(f"{BASE_URL}/{endpoint}", params=params)).json()
+
+    def _get(self, url: str, **kwargs: Any) -> Any:
+        try:
+            return self.http.get(url, **kwargs)
+        except requests.RequestException as error:
+            raise TenorError(describe(error)) from error
 
     def search(self, query: str, limit: int = 10) -> List[GIF]:
         results = self._request("search", {"q": query, "limit": limit})["results"]
@@ -67,8 +94,7 @@ class Tenor:
             return list(executor.map(lambda gif: self.download(gif, gif_format), gifs))
 
     def _download(self, url: str, path: Path) -> None:
-        response = self.http.get(url, stream=True)
-        response.raise_for_status()
+        response = checked(self._get(url, stream=True))
         with open(path, "wb") as f:
             for chunk in response.iter_content(chunk_size=1024):
                 if chunk:

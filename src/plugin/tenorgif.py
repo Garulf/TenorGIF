@@ -8,7 +8,7 @@ from typing import List
 from pyflowlauncher import Plugin, Result, api
 
 from launcher import KEEP_OPEN, TenorLauncher
-from tenor import GIF, Tenor
+from tenor import GIF, Tenor, TenorError
 
 ICON = str(Path(__file__).resolve().parent.parent / "icon.png")
 TRENDING_TERMS = 10
@@ -40,13 +40,27 @@ async def query(query: str):
             title="Please set your API key in the settings.",
             icon=ICON,
         ).add_action(api.open_setting_dialog())]
-    client = tenor(api_key)
+    try:
+        return await tenor_results(tenor(api_key), query, max_results, default_action)
+    except TenorError as error:
+        return [error_result(error)]
+
+
+async def tenor_results(client: Tenor, query: str, max_results, default_action: str) -> List[Result]:
     if query == "":
         terms = await run_blocking(client.trending_terms, TRENDING_TERMS)
         return [trending_result(term) for term in terms]
     gifs = await run_blocking(client.search, query, max_results)
     icons = await run_blocking(client.download_all, gifs, PREVIEW_FORMAT)
     return [gif_result(gif, icon, default_action) for gif, icon in zip(gifs, icons)]
+
+
+def error_result(error: TenorError) -> Result:
+    return Result(
+        title="Tenor request failed",
+        subtitle=str(error),
+        icon=ICON,
+    ).add_action(api.open_setting_dialog())
 
 
 def trending_result(term: str) -> Result:

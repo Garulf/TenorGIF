@@ -49,6 +49,8 @@ class FakeHttp:
 
     def get(self, url, params=None, stream=False):
         self.calls.append((url, dict(params or {})))
+        if isinstance(self.error, Exception):
+            raise self.error
         if self.error is not None:
             return self.error
         if url.startswith(tenor_module.BASE_URL):
