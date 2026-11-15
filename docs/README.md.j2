@@ -1,0 +1,92 @@
+{% extends "base.md.j2" %}
+
+{% block badges_extra %} [![Downloads](https://img.shields.io/github/downloads/{{ project.owner }}/{{ project.repo }}/total)]({{ project.url }}/releases/latest){% endblock %}
+
+{% block usage %}
+> [!WARNING]
+> Google stopped accepting new Tenor API keys on January 13, 2026 and announced that the Tenor API
+> would be shut down on June 30, 2026. See the
+> [Tenor developer FAQ](https://support.google.com/tenor/answer/10455265?hl=en). Without a working
+> key, searches show the error Tenor returns.
+
+## Features
+
+* **Search Tenor.** Results show a thumbnail of each GIF.
+* **Copy or open.** `Enter` copies the GIF link or opens it in your browser, whichever you choose in settings.
+* **Trending searches.** Type the keyword on its own to see what is trending, then pick a term to search it.
+* **Context menu.** Open the GIF's Tenor page or copy its link, whatever the default action is.
+
+## Usage
+
+Type `tg` followed by what you are looking for:
+
+```
+tg dog
+```
+
+{{ screenshot("search", alt="TenorGIF search results in Flow Launcher") }}
+
+| Query | Result |
+| --- | --- |
+| `tg <search>` | GIFs matching the search |
+| `tg` | Trending search terms. Select one to search it |
+
+### Trending searches
+
+{{ screenshot("trending", alt="Trending Tenor search terms in Flow Launcher") }}
+
+### Context menu
+
+Open the context menu (`Shift+Enter` or right-click) on a GIF to open its Tenor page or copy its link:
+
+{{ screenshot("context", alt="TenorGIF context menu") }}
+
+## Installation
+
+### Flow Launcher
+
+In Flow Launcher, type:
+
+```
+pm install tenorgif
+```
+
+{{ screenshot("install", alt="Flow Launcher plugin manager installing TenorGIF") }}
+
+### Manual installation
+
+Download `TenorGIF-<version>.zip` from the [latest release]({{ project.url }}/releases/latest) and unzip it into
+`%appdata%\FlowLauncher\Plugins`, then restart Flow Launcher.
+
+Pre-releases of the next version are published from the open release PR on the
+[releases page]({{ project.url }}/releases) for testing. Flow Launcher won't offer them as updates.
+
+## Configuration
+
+Open **Settings → Plugins → TenorGIF** in Flow Launcher:
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| Tenor API key | | Your Tenor API key |
+| Max results | `10` | How many GIFs to show |
+| Default action | `Copy to Clipboard` | What `Enter` does: copy the GIF link or open it in your browser |
+
+## Requirements
+
+* Flow Launcher 1.17.0 or newer
+* Python 3.8 or newer, which Flow Launcher can install for you
+* A Tenor API key
+
+Powered by Tenor.
+
+## Changelog
+
+{{ changelog(3) }}
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+{% endblock %}
+
+{% block screenshots %}{% endblock %}
+{% block install %}{% endblock %}
+{% block contributing %}{% endblock %}
+{% block license %}{% endblock %}

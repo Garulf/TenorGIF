@@ -1,0 +1,31 @@
+{
+  "keyword": "tg",
+  "query": "",
+  "icon": "../../data/icon.png",
+  "max_results": 4,
+  "selection": 0,
+  "results": [
+    {
+      "title": "good morning",
+      "subtitle": "Select to search with this query",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "happy friday",
+      "subtitle": "Select to search with this query",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "thank you",
+      "subtitle": "Select to search with this query",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "congratulations",
+      "subtitle": "Select to search with this query",
+      "icon": "../../data/icon.png"
+    }
+  ],
+  "query_suggestion": "",
+  "show_caret": true
+}

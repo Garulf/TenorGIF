@@ -1,0 +1,21 @@
+{
+  "keyword": "tg",
+  "query": "dog",
+  "icon": "../../data/icon.png",
+  "max_results": 2,
+  "selection": 0,
+  "results": [
+    {
+      "title": "Open in Browser",
+      "subtitle": "Open GIF on tenor's website.",
+      "icon": "../../data/icon.png"
+    },
+    {
+      "title": "Copy URL to clipboard",
+      "subtitle": "Copy GIF URL to clipboard.",
+      "icon": "../../data/icon.png"
+    }
+  ],
+  "query_suggestion": "",
+  "show_caret": false
+}
