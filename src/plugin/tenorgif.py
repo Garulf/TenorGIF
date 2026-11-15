@@ -14,6 +14,8 @@ ICON = str(Path(__file__).resolve().parent.parent / "icon.png")
 TRENDING_TERMS = 10
 PREVIEW_FORMAT = "tinygif"
 OPEN_WEBSITE = "open website"
+DEFAULT_MAX_RESULTS = 10
+DEFAULT_ACTION = "Copy to Clipboard"
 
 plugin = Plugin(launcher=TenorLauncher())
 
@@ -30,9 +32,9 @@ async def run_blocking(func, *args):
 @plugin.on_method
 async def query(query: str):
     settings = plugin.settings
-    api_key = settings["api_key"]
-    max_results = settings["max_results"]
-    default_action = settings["default_action"]
+    api_key = settings.get("api_key") or ""
+    max_results = settings.get("max_results") or DEFAULT_MAX_RESULTS
+    default_action = settings.get("default_action") or DEFAULT_ACTION
     if api_key == "":
         return [Result(
             title="Please set your API key in the settings.",
