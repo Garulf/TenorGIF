@@ -5,8 +5,8 @@
   "Description": "Search Tenor for amazing GIFs!",
   "Author": "Garulf",
   "Version": "2.2.0",
-  "Language": "python",
+  "Language": "python_v2",
   "Website": "https://github.com/Garulf/TenorGIF",
-  "IcoPath": "./icon.png",
+  "IcoPath": "icon.png",
   "ExecuteFileName": "run.py"
 }
