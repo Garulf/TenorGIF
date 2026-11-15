@@ -1,0 +1,31 @@
+{
+  "keyword": "tg",
+  "query": "dog",
+  "icon": "../../data/icon.png",
+  "max_results": 4,
+  "selection": 0,
+  "results": [
+    {
+      "title": "Happy dog dancing",
+      "subtitle": "Select to copy to clipboard.",
+      "icon": "thumbs/dancing.png"
+    },
+    {
+      "title": "Dog wagging tail",
+      "subtitle": "Select to copy to clipboard.",
+      "icon": "thumbs/wagging.png"
+    },
+    {
+      "title": "Puppy saying hello",
+      "subtitle": "Select to copy to clipboard.",
+      "icon": "thumbs/hello.png"
+    },
+    {
+      "title": "Cool dog in sunglasses",
+      "subtitle": "Select to copy to clipboard.",
+      "icon": "thumbs/sunglasses.png"
+    }
+  ],
+  "query_suggestion": "",
+  "show_caret": true
+}
